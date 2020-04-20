@@ -1,5 +1,18 @@
 stack<int> st;
 stack<int> minst;
+/* two approaches:
+First:
+while pushing element, push directly in original stack but push in minstack if it is smaller than top el, otherwise just push the top element again
+And while popping pop from both the stacks dircetly; The minstack stores min element till that number and is of the same size as original
+
+Second:
+While pushing, push in minstack only if a smaller element comes and while popping, pop from original stack and pop from minstack only if the popped element is 
+smaller than top element of minstack, because min of stack will be changed if min element gets popped out of original stack
+
+*/
+
+
+
 
 MinStack::MinStack() {
     while(!st.empty()){
