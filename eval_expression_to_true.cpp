@@ -19,6 +19,12 @@ int Solution::cnttrue(string A) {
         T[i][i]=(sym[i]=='T')?1:0;
         F[i][i]=(sym[i]=='F')?1:0;
     }
+    /*** another way of writing loop;
+    for(i=l-2;i>=0;i--){
+    for(j=i+1;j<l;j++){
+    for(k=i;k<j;k++){
+    rest same
+    ***/
     
     for(int gap=1;gap<l;gap++){
         for(int i=0,j=gap;j<l;j++,i++){
