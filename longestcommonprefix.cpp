@@ -4,6 +4,7 @@ int min(int a, int b){
     }
     return b;
 }
+/*************See O(nmlogn) binary search sol GFG************/
 
 string Solution::longestCommonPrefix(vector<string> &A) {
     
