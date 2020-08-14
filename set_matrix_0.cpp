@@ -1,3 +1,41 @@
+//Solution 1-Easier extra space
+
+
+void Solution::setZeroes(vector<vector<int> > &A) {
+     int m=A.size(),n=A[0].size();
+    int r1=0,c1=0;
+    vector<bool> row(m,0);
+    vector<bool> col(n,0);
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            if(A[i][j]==0){
+                row[i]=1;
+                
+                col[j]=1;
+            }
+        }
+    }
+    
+    
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            if(row[i]==1 || col[j]==1){
+                A[i][j]=0;
+            }
+        }
+    }
+    
+    
+    return ;
+}
+
+
+//Solution2 constant space
+
+
+
+
+
 void Solution::setZeroes(vector<vector<int> > &A) {
     // Do not write main() function.
     // Do not read input, instead use the arguments to the function.
