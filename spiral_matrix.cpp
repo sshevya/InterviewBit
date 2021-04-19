@@ -1,5 +1,65 @@
 vector<vector<int> > Solution::generateMatrix(int A) {
   
+  int i=0,j=0;
+   int check=0;
+   int count=0;
+   for(int p=1;p<=A*A;p++){
+       
+       /*if(v[i][j]!=0){
+          if(check==0){
+              check=1;
+          } else if(check==1){
+              check=2;
+          }else if(check==2){
+              check=3;
+          }else{
+              check=0;
+          }
+       }*/
+       if(v[i][j]!=0){
+           i++;
+           j++;
+       }
+       v[i][j]=p;
+       if(check==0){
+           j++;
+           if(j==A-1-count){
+               check=1;
+           }
+       }else if(check==1){
+           
+            i++;
+           if(i==A-1-count){
+               check=2;
+           }
+           
+       }else if(check==2){
+           
+           j--;
+           if(j==count){
+               check=3;
+           }
+           
+           
+       }else if(check==3){
+           i--;
+           if(i==count){
+               check =0;
+               count++;
+           }
+           
+       }
+       
+       
+   }
+   return v;
+  
+  
+  
+  
+  
+  
+  /***************** Another approach (difficult)
    vector<vector<int>> v; 
    vector<int> m(A,0);
    for(int i=0;i<A;i++){
@@ -55,5 +115,5 @@ vector<vector<int> > Solution::generateMatrix(int A) {
         
     }
     
-  return v;  
+  return v;*************/ 
 }
