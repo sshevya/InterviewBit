@@ -6,7 +6,7 @@
  *     TreeNode *right;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
- *//****This does not give preorder
+ *//****This does not give preorder hence wrong
 vector<int> Solution::solve(TreeNode* A) {
     map<int,vector<int>>m;
     vector<int> v;
@@ -49,6 +49,50 @@ vector<int> Solution::solve(TreeNode* A) {
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+
+/***** First Solution using above concept***/
+
+void rec(TreeNode* A, map<int, vector<int>>& m, int h){
+    
+    
+    if(A==NULL){
+        return;
+    }
+    m[h].push_back(A->val);
+    
+    rec(A->left, m, h+1);
+    rec(A->right, m, h);
+    
+}
+ /*Can't do this using BFS like in vertical order traversal because we have to do it according */
+ /* to preorder traversal*/
+ 
+vector<int> Solution::solve(TreeNode* A) {
+    
+      map<int,vector<int>>m;
+    vector<int> v;
+    if(A==NULL){
+        return v;
+    }
+    
+    rec(A,m,0);
+    map<int,vector<int>>::iterator i;
+    for(i=m.begin();i!=m.end();i++){
+       vector<int> temp = i->second;
+        v.insert(v.end(), temp.begin(), temp.end());
+        
+    }
+    return v;
+}
+
+
+
+
+
+
+
+/***** Second Solution******/
 vector<int> Solution::solve(TreeNode* root) {
    vector<int> v;
     // base case 
