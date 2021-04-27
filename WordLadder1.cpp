@@ -51,10 +51,97 @@ int Solution::solve(string A, string B, vector<string> &C) {
     
 }
 
-/**** See bidirectional BFS implementatoion  & concept*****/
+/**** See bidirectional BFS implementatoion  & concept
+Solution 3 TLE
 
 
-/********** TLE  Solution(2) *****/
+
+
+*****/
+
+bool isAdj(string A, string B){
+    int count =0;
+    for(int i=0;i<A.length();i++){
+        if(A[i]!=B[i]){
+            count++;
+        }
+    }
+    if(count==1){
+        return 1;
+    }
+    return 0;
+}
+
+int Solution::solve(string A, string B, vector<string> &C) {
+    if(A==B){
+        return 0;
+    }
+    int n = C.size();
+    unordered_map<string,int> m,m1,m2;
+    for(auto x: C){
+        m[x]=1;
+    }
+    
+    queue<pair<string, int>> q1,q2;
+    
+    q1.push({A,1});
+    m1[A]=1;
+    q2.push({B,1});
+    m2[B]=1;
+    while(!q1.empty() && !q2.empty()){
+        
+        string temp1 = q1.front().first;
+        int  h1 = q1.front().second;
+        
+        q1.pop();
+        string temp2 = q2.front().first;
+        int  h2 = q2.front().second;
+        q2.pop();
+
+        for(int i=0; i<n; i++){
+         //   cout<<isAdj(C[i],temp1)<<" ";
+            if(isAdj(C[i],temp1) && m1.find(C[i])==m1.end() ){
+                
+                if(C[i]==B){
+                    return h1+1;
+                }
+                
+                q1.push({C[i],h1+1});
+                m1[C[i]]=h1+1;
+                
+                if(m2.find(C[i])!=m2.end()){
+                    return m1[C[i]] + m2[C[i]]-1;
+                }
+            }
+        }
+        
+        for(int i=0; i<n; i++){
+            if(isAdj(C[i],temp2) && m2.find(C[i])==m2.end() ){
+                
+                if(C[i]==B){
+                    return h2+1;
+                }
+                
+                q2.push({C[i],h2+1});
+                m2[C[i]]=h2+1;
+                
+                if(m1.find(C[i])!=m1.end()){
+                    return m1[C[i]] + m2[C[i]]-1;
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    
+    return 0;
+}
+
+
+/********** TLE  Solution(3) *****/
 bool isAdj(string A, string B){
     int count=0;
     int n=A.length();
