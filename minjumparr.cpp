@@ -32,7 +32,32 @@ int Solution::jump(vector<int> &A) {
    return dp[n-1]; 
 }
 */
-
+/**** O(1) space sol**/
+int Solution::jump(vector<int> &A) {
+    
+    int n=A.size();
+    int jumps = 0;
+    int curr = 0; 
+    int next = 0;
+    
+    for(int i=0;i<=curr;i++){
+        if(i==n-1){
+            return jumps;
+        }
+        
+        next = max(next, i+A[i]);
+        
+        if(i==curr){
+            jumps++;
+            curr = next;
+        }
+        
+    }
+    
+    
+    return -1;
+}
+/**Sol (3)**/
 
 
 int Solution::jump(vector<int> &A) {
