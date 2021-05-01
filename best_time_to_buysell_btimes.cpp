@@ -20,7 +20,19 @@ int Solution::solve(vector<int> &A, int B) {
 
         for( j=1;j<n;j++){
            dp[i][j]=max(a[j]-minv,dp[i][j-1]);
-
+            /*max(dp[t][i-1],A[i]-A[j]+profit[t-1][j])
+            
+            max of (max i transactions till day j-1 ) and 
+            (max of(profit till jth day with t-1 transactions
+            and add diff of curr day and jth day
+            to include ith day transaction
+            )
+            
+            A[j] - min(A[j]-dp[i-1][j] for all j less than current j)
+            basically max of profit till jth day i-1 transactions plus one more transaction
+            curr day - jth day
+            
+=            */
            minv=min(minv,a[j]-dp[i-1][j]);
 
             
