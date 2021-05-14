@@ -1,3 +1,4 @@
+/****Sol using BFS **/
 vector<string> Solution::letterCombinations(string A) {
     
     int n=A.length();
@@ -43,3 +44,37 @@ vector<string> Solution::letterCombinations(string A) {
     
     
 }
+
+/***Sol using backtracking ***/
+void bc(string table[],string& s, string& A, vector<string>& v, int ind){
+    if(s.length()==A.length()){
+        v.push_back(s);
+        return;
+    }
+    
+    if(ind>=A.length()){
+        return;
+    }
+    
+        for(char a : table[A[ind]-'0']){
+            s+=a;
+            bc(table,s,A,v,ind+1);
+            s.pop_back();
+            
+        }
+        
+
+}
+
+vector<string> Solution::letterCombinations(string A) {
+    
+    int n=A.length();
+    string table[10] = { "0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" }; 
+
+    string s="";
+    vector<string> v;
+    bc(table,s,A,v,0);
+    
+    return v;
+}
+
